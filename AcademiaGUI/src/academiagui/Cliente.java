@@ -12,25 +12,25 @@ public class Cliente {
     public int id;
     public int instrutor;
     public int nutri;
+    public int plan;
     public String name;
     public float weight;
     public float height;
     public String date;
     public String email;
     public String phone;
-    public String plan;
     
     public Cliente(
         int id,
         int instrutor,
         int nutri,
+        int plan,
         String name,
         float weight,
         float height,
         String date,
         String email,
-        String phone,
-        String plan
+        String phone
     ){
         this.id = id;
         this.instrutor = instrutor;

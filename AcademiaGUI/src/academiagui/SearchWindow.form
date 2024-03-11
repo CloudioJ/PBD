@@ -33,6 +33,8 @@
                           <Component id="show_clients" min="-2" pref="140" max="-2" attributes="0"/>
                           <Component id="show_emp" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="show_plans" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="20" max="32767" attributes="0"/>
@@ -45,7 +47,10 @@
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="343" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="show_emp" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="show_emp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="show_plans" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="show_clients" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="24" max="32767" attributes="0"/>
@@ -79,8 +84,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="show_emp">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mostrar funcionarios"/>
+        <Property name="text" type="java.lang.String" value="Mostrar atendimentos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="show_empActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="show_plans">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar Planos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="show_plansActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

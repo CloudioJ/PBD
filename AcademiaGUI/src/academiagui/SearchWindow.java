@@ -39,6 +39,7 @@ public class SearchWindow extends javax.swing.JFrame {
         query_text = new javax.swing.JTextArea();
         show_clients = new javax.swing.JButton();
         show_emp = new javax.swing.JButton();
+        show_plans = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +54,19 @@ public class SearchWindow extends javax.swing.JFrame {
             }
         });
 
-        show_emp.setText("Mostrar funcionarios");
+        show_emp.setText("Mostrar atendimentos");
+        show_emp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_empActionPerformed(evt);
+            }
+        });
+
+        show_plans.setText("Mostrar Planos");
+        show_plans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_plansActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,7 +80,9 @@ public class SearchWindow extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(show_clients, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(show_emp))))
+                            .addComponent(show_emp))
+                        .addGap(18, 18, 18)
+                        .addComponent(show_plans)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,7 +91,9 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(show_emp)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(show_emp)
+                    .addComponent(show_plans))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(show_clients)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -94,10 +111,26 @@ public class SearchWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_show_clientsActionPerformed
 
+    private void show_empActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_empActionPerformed
+        showAtendimentos();
+    }//GEN-LAST:event_show_empActionPerformed
+
+    private void show_plansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_plansActionPerformed
+        showClienteCondensed();        // TODO add your handling code here:
+    }//GEN-LAST:event_show_plansActionPerformed
+
+    private void showAtendimentos(){
+        query_text.setEditable(true);
+//        String columns = "ID\tInstrutor\tNutricionista\tNome\tPeso\tAltura\tData de Nascimento\tEmail\tTelefone\tPlano\n";
+//        String info = columns;
+        String info = con.showAtendimentos();
+//            System.out.println("");
+        query_text.setText(info);
+        query_text.setEditable(false);
+    }
     private void showClienteAction()throws SQLException, ClassNotFoundException{
         query_text.setEditable(true);
-        query_text.setText("Ola mundo");
-        String columns = "ID\tInstrutor\tNutricionista\tNome\tPeso\tAltura\tData de Nascimento\tEmail\tTelefone\tPlano\n";
+        String columns = "ID\tInstrutor\tNutricionista\tPlano\tNome\tPeso\tAltura\tData de Nascimento\tEmail\tTelefone\n";
         String info = columns;
         try {
             ArrayList<Cliente> clients = con.showClientes();
@@ -107,13 +140,13 @@ public class SearchWindow extends javax.swing.JFrame {
                 info += String.valueOf(client.id) + "\t"
                         + String.valueOf(client.instrutor) + "\t"
                         + String.valueOf(client.nutri) + "\t"
+                        + String.valueOf(client.plan) + "\t"
                         + client.name + "\t"
                         + String.valueOf(client.weight) + "\t"
                         + String.valueOf(client.height) + "\t"
                         + client.date + "\t"
                         + client.email + "\t"
-                        + client.phone + "\t"
-                        + client.plan + "\n";
+                        + client.phone + "\n";
 //                
             }
             query_text.setText(info);
@@ -121,6 +154,17 @@ public class SearchWindow extends javax.swing.JFrame {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(SearchWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
+        query_text.setEditable(false);
+    }
+    
+    private void showClienteCondensed(){
+        query_text.setEditable(true);
+        query_text.setText("Ola mundo");
+//        String columns = "ID\tInstrutor\tNutricionista\tNome\tPeso\tAltura\tData de Nascimento\tEmail\tTelefone\tPlano\n";
+//        String info = columns;
+        String info = con.showClientesCondensed();
+//            System.out.println("");
+        query_text.setText(info);
         query_text.setEditable(false);
     }
     /**
@@ -163,5 +207,6 @@ public class SearchWindow extends javax.swing.JFrame {
     private javax.swing.JTextArea query_text;
     private javax.swing.JButton show_clients;
     private javax.swing.JButton show_emp;
+    private javax.swing.JButton show_plans;
     // End of variables declaration//GEN-END:variables
 }
