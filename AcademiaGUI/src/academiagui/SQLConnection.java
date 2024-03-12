@@ -24,8 +24,8 @@ import java.util.ArrayList;
 public class SQLConnection{
     
     private final String jdbcUrl = "jdbc:postgresql://localhost:5432/academia";
-    private final String username = "postgres";
-    private final String password = "ph22s31dm";
+    private String username = "postgres";
+    private String password = "ph22s31dm";
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream ps = new PrintStream(baos);
     PrintStream old = System.out;
@@ -66,6 +66,11 @@ public class SQLConnection{
         }
     }
     
+    
+    public void setLogin(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
     /**
      *
      * @return
