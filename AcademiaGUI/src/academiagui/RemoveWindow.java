@@ -39,6 +39,7 @@ public class RemoveWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         names_field = new javax.swing.JTextArea();
         update_button = new javax.swing.JButton();
+        return_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,13 @@ public class RemoveWindow extends javax.swing.JFrame {
             }
         });
 
+        return_button.setText("Retornar");
+        return_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                return_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,11 +79,13 @@ public class RemoveWindow extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(client_name, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(remove_button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(update_button))
-                    .addComponent(client_name, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(return_button)
+                            .addComponent(update_button))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
@@ -92,7 +102,9 @@ public class RemoveWindow extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(remove_button)
-                            .addComponent(update_button)))
+                            .addComponent(update_button))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(return_button))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -115,6 +127,13 @@ public class RemoveWindow extends javax.swing.JFrame {
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
         names_field.setText(con.clientNames());
     }//GEN-LAST:event_update_buttonActionPerformed
+
+    private void return_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return_buttonActionPerformed
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.setLocationRelativeTo(this);
+        mainMenu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_return_buttonActionPerformed
 
     private void removeClient(String nome) throws SQLException{
         con.removeClient(nome);
@@ -163,6 +182,7 @@ public class RemoveWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea names_field;
     private javax.swing.JButton remove_button;
+    private javax.swing.JButton return_button;
     private javax.swing.JButton update_button;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,6 +40,7 @@ public class SearchWindow extends javax.swing.JFrame {
         show_clients = new javax.swing.JButton();
         show_emp = new javax.swing.JButton();
         show_plans = new javax.swing.JButton();
+        return_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,21 +69,30 @@ public class SearchWindow extends javax.swing.JFrame {
             }
         });
 
+        return_button.setText("Retornar");
+        return_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                return_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 958, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(show_clients, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(show_emp))
+                        .addComponent(show_emp)
                         .addGap(18, 18, 18)
-                        .addComponent(show_plans)))
+                        .addComponent(show_plans)
+                        .addGap(18, 18, 18)
+                        .addComponent(show_clients, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(return_button)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -93,10 +103,10 @@ public class SearchWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(show_emp)
-                    .addComponent(show_plans))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(show_clients)
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(show_plans)
+                    .addComponent(return_button)
+                    .addComponent(show_clients))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,6 +128,13 @@ public class SearchWindow extends javax.swing.JFrame {
     private void show_plansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_plansActionPerformed
         showClienteCondensed();        // TODO add your handling code here:
     }//GEN-LAST:event_show_plansActionPerformed
+
+    private void return_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return_buttonActionPerformed
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.setLocationRelativeTo(this);
+        mainMenu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_return_buttonActionPerformed
 
     private void showAtendimentos(){
         query_text.setEditable(true);
@@ -205,6 +222,7 @@ public class SearchWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea query_text;
+    private javax.swing.JButton return_button;
     private javax.swing.JButton show_clients;
     private javax.swing.JButton show_emp;
     private javax.swing.JButton show_plans;
