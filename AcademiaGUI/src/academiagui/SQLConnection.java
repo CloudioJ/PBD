@@ -81,16 +81,32 @@ public class SQLConnection{
         var clients = new ArrayList<Cliente>();
         try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password)) {
             Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM cliente");
+            ResultSet rs = st.executeQuery("""
+                                           SELECT c.id_cliente,
+                                                  c.nome AS Cliente,
+                                                  f.nome AS Instrutor,
+                                                  f2.nome AS Nutricionista,
+                                                  p.nome AS Plano,
+                                                  c.peso,
+                                                  c.altura,
+                                                  c.data_nasc,
+                                                  c.email,
+                                                  c.telefone
+                                           FROM Cliente c
+                                           INNER JOIN Instrutor i ON c.id_instrutor = i.id_funcionario
+                                           INNER JOIN Funcionario f ON i.id_funcionario = f.id_funcionario
+                                           INNER JOIN Nutricionista n ON c.id_nutricionista = n.id_funcionario
+                                           INNER JOIN Funcionario f2 ON f2.id_funcionario = n.id_funcionario
+                                           INNER JOIN Plano p ON c.id_plano = p.id_plano;""");
 
             while (rs.next()) {
                 try {
                     Cliente client = new Cliente(
                             rs.getInt("id_cliente"),
-                            rs.getInt("id_instrutor"),
-                            rs.getInt("id_nutricionista"),
-                            rs.getInt("id_plano"),
-                            rs.getString("nome"),
+                            rs.getString("Instrutor"),
+                            rs.getString("Nutricionista"),
+                            rs.getString("Plano"),
+                            rs.getString("Cliente"),
                             rs.getFloat("peso"),
                             rs.getFloat("altura"),
                             rs.getDate("data_nasc").toString(),

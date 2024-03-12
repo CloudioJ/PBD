@@ -10,9 +10,9 @@ package academiagui;
  */
 public class Cliente {
     public int id;
-    public int instrutor;
-    public int nutri;
-    public int plan;
+    public String instrutor;
+    public String nutri;
+    public String plan;
     public String name;
     public float weight;
     public float height;
@@ -22,9 +22,9 @@ public class Cliente {
     
     public Cliente(
         int id,
-        int instrutor,
-        int nutri,
-        int plan,
+        String instrutor,
+        String nutri,
+        String plan,
         String name,
         float weight,
         float height,

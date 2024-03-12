@@ -147,22 +147,22 @@ public class SearchWindow extends javax.swing.JFrame {
     }
     private void showClienteAction()throws SQLException, ClassNotFoundException{
         query_text.setEditable(true);
-        String columns = "ID\tInstrutor\tNutricionista\tPlano\tNome\tPeso\tAltura\tData de Nascimento\tEmail\tTelefone\n";
+        String columns = "ID\t\tInstrutor\t\tNutricionista\t\tPlano\t\tNome\t\tPeso\t\tAltura\t\tData de Nascimento\t\tEmail\t\tTelefone\n";
         String info = columns;
         try {
             ArrayList<Cliente> clients = con.showClientes();
 //            System.out.println("");
             for (var client: clients){
                 System.out.println(client);
-                info += String.valueOf(client.id) + "\t"
-                        + String.valueOf(client.instrutor) + "\t"
-                        + String.valueOf(client.nutri) + "\t"
-                        + String.valueOf(client.plan) + "\t"
-                        + client.name + "\t"
-                        + String.valueOf(client.weight) + "\t"
-                        + String.valueOf(client.height) + "\t"
-                        + client.date + "\t"
-                        + client.email + "\t"
+                info += String.valueOf(client.id) + "\t\t"
+                        + client.instrutor + "\t\t"
+                        + client.nutri + "\t\t"
+                        + client.plan + "\t\t"
+                        + client.name + "\t\t"
+                        + String.valueOf(client.weight) + "\t\t"
+                        + String.valueOf(client.height) + "\t\t"
+                        + client.date + "\t\t"
+                        + client.email + "\t\t"
                         + client.phone + "\n";
 //                
             }
